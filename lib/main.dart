@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/constants/card_view.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:newsapp/widgets/card_view.dart';
 import 'package:newsapp/services/api.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

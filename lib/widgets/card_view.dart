@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/constants/dialog_box.dart';
+import 'package:newsapp/widgets/dialog_box.dart';
 
 class CardView extends StatelessWidget {
   // const imageLink = "";
