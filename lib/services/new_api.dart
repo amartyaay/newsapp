@@ -7,9 +7,6 @@ import 'package:newsapp/helper/article.dart';
 import 'dart:developer' show log;
 
 final apiProvider = Provider((ref) => GetNews());
-final newsProvider = FutureProvider<List<Article>>((ref) async {
-  return ref.read(apiProvider).apiCall();
-});
 
 class GetNews {
   final String apiKey = dotenv.env['new_api_key'] ?? 'inavlid';

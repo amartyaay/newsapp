@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/services/new_api.dart';
+import 'package:newsapp/services/provider.dart';
 import 'package:newsapp/widgets/card_view.dart';
 
 class Home extends StatelessWidget {
