@@ -15,7 +15,7 @@ class FloatingCounter extends StatelessWidget {
         onPressed: () {},
         child: Consumer(
           builder: (context, ref, child) {
-            ref.watch(localStorageProvider.notifier).getData();
+            ref.read(localStorageProvider.notifier).getData();
             int data = ref.watch(localStorageProvider.notifier).value;
             String count = data.toString();
             return Text(
