@@ -22,10 +22,10 @@ class News {
           if (element['urlToImage'] != null && element['description'] != null) {
             Article article = Article(
               title: element['title'],
-              // author: element['author'],
+              author: element['author'],
               description: element['description'],
               urlToImage: element['urlToImage'],
-              // publshedAt: DateTime.parse(element['publishedAt']),
+              publishedAt: DateTime.parse(element['publishedAt']),
               content: element["content"],
               articleUrl: element["url"],
             );

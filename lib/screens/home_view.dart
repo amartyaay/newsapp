@@ -25,6 +25,7 @@ class Home extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: ((context, index) {
                       return CardView(
+                        index: index,
                         img: data[index].urlToImage,
                         title: data[index].title,
                       );
@@ -35,7 +36,8 @@ class Home extends StatelessWidget {
               error: ((error, stackTrace) {
                 return Text(error.toString());
               }),
-              loading: (() => const CircularProgressIndicator()));
+              loading: (() =>
+                  const Center(child: CircularProgressIndicator())));
         }),
       ),
     );
