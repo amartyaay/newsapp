@@ -16,5 +16,5 @@ class LocalStorage extends StateNotifier {
     value = pref.getInt('score') ?? 0;
   }
 
-  void increase() => value++;
+  void increase() => ++value;
 }
