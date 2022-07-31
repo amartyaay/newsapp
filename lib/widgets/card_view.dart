@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/screens/full_news_view.dart';
+import 'package:newsapp/services/local_storage.dart';
 
-class CardView extends StatelessWidget {
-  // const imageLink = "";
+class CardView extends ConsumerWidget {
   final String title, img;
   final int index;
   const CardView(
       {super.key, required this.img, required this.title, required this.index});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final count = ref.watch(localStorageProvider);
     return GestureDetector(
       onTap: () {
+        ref.read(localStorageProvider.notifier).increase();
+        ref.read(localStorageProvider.notifier).saveData();
         Navigator.push(
           context,
           MaterialPageRoute(builder: ((context) => FullView(index: index))),

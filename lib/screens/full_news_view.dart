@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/services/provider.dart';
+import 'package:newsapp/widgets/floating_counter.dart';
 
 class FullView extends StatelessWidget {
   final int index;
@@ -91,6 +92,7 @@ class FullView extends StatelessWidget {
               loading: (() => const CircularProgressIndicator()));
         },
       ),
+      floatingActionButton: const FloatingCounter(),
     );
   }
 }

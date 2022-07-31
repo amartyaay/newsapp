@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/services/new_api.dart';
+import 'package:newsapp/constants/constants.dart';
+import 'package:newsapp/services/local_storage.dart';
 import 'package:newsapp/services/provider.dart';
 import 'package:newsapp/widgets/card_view.dart';
+import 'package:newsapp/widgets/floating_counter.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -16,6 +18,7 @@ class Home extends StatelessWidget {
       ),
       body: Consumer(
         builder: ((context, ref, child) {
+          ref.watch(localStorageProvider.notifier).getData();
           return ref.watch(newsProvider).when(
               data: ((data) {
                 return Padding(
@@ -35,12 +38,16 @@ class Home extends StatelessWidget {
                 );
               }),
               error: ((error, stackTrace) {
-                return Text(error.toString());
+                return Text(
+                  error.toString(),
+                  style: readCounterTextStyle,
+                );
               }),
               loading: (() =>
                   const Center(child: CircularProgressIndicator())));
         }),
       ),
+      floatingActionButton: const FloatingCounter(),
     );
   }
 }
