@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/widgets/dialog_box.dart';
 
 class CardView extends StatelessWidget {
   // const imageLink = "";
-  final String title, img, des;
-  const CardView(
-      {super.key, required this.img, required this.title, required this.des});
+  final String title, img;
+  const CardView({super.key, required this.img, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showDialogBox(context, des, title);
+        // showDialogBox(context, title);
       },
       child: Card(
         child: Padding(
