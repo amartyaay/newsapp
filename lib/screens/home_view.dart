@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
                   const Center(child: CircularProgressIndicator())));
         }),
       ),
-      floatingActionButton: const FloatingCounter1(),
+      floatingActionButton: const FloatingCounter(),
     );
   }
 }
