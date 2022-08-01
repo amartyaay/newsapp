@@ -14,6 +14,7 @@ class LocalStorage extends StateNotifier {
   Future<void> getData() async {
     final pref = await SharedPreferences.getInstance();
     value = pref.getInt('score') ?? 0;
+    // return value;
   }
 
   void increase() => value += 1;
