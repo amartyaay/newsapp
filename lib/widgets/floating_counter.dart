@@ -11,8 +11,9 @@ class FloatingCounter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.blue,
-        border: Border.all(color: Colors.orange, width: 2),
+        color: const Color.fromARGB(255, 255, 234, 6),
+        border: Border.all(
+            color: const Color.fromARGB(255, 119, 65, 235), width: 2),
         borderRadius: const BorderRadius.all(
           Radius.circular(25),
         ),
