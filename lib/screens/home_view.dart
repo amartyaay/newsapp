@@ -6,9 +6,15 @@ import 'package:newsapp/services/provider.dart';
 import 'package:newsapp/widgets/breaking_news_card.dart';
 import 'package:newsapp/widgets/card_view.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
-  final int _index = 0;
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +138,11 @@ class Home extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_rounded), label: 'Profile'),
           ],
+          onTap: (value) {
+            setState(() {
+              _index = value;
+            });
+          },
         ),
       ),
     );
