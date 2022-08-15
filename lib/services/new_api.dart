@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/constants/constants.dart';
-import 'package:newsapp/helper/article.dart';
+import 'package:newsapp/model/article.dart';
 import 'dart:developer' show log;
 
 final apiProvider = Provider((ref) => GetNews());

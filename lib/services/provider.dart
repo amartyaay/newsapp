@@ -3,7 +3,7 @@ import 'package:newsapp/services/local_storage.dart';
 
 import 'package:newsapp/services/new_api.dart';
 
-import '../helper/article.dart';
+import '../model/article.dart';
 
 final newsProvider = FutureProvider<List<Article>>((ref) async {
   return await ref.read(apiProvider).apiCall();
