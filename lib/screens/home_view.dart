@@ -117,7 +117,7 @@ class _HomeState extends State<Home> {
           borderRadius: BorderRadius.circular(16),
         ),
         child: BottomNavigationBar(
-          elevation: 0,
+          elevation: 10,
           currentIndex: _index,
           selectedItemColor: Colors.orange.shade900,
           items: const [
@@ -138,6 +138,7 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_rounded), label: 'Profile'),
           ],
+          type: BottomNavigationBarType.shifting,
           onTap: (value) {
             setState(() {
               _index = value;

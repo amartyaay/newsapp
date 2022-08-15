@@ -1,98 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/services/provider.dart';
-import 'package:newsapp/widgets/floating_counter.dart';
 
-class FullView extends StatelessWidget {
+class FullView extends ConsumerWidget {
   final int index;
-  // const FullView({});
-  const FullView({super.key, required this.index});
+  const FullView({Key? key, required this.index}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('News App'),
-        backgroundColor: Colors.teal,
-      ),
-      body: Consumer(
-        builder: (context, ref, child) {
-          return ref.watch(newsProvider).when(
-              data: ((data) {
-                return Padding(
-                  padding: const EdgeInsets.all(10),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ref.watch(newsProvider).maybeWhen(
+          data: (data) {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                iconTheme: const IconThemeData(
+                  color: Colors.orange,
+                ),
+              ),
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(
-                        image: NetworkImage(
-                          data[index].urlToImage,
-                        ),
-                        errorBuilder: ((context, error, stackTrace) {
-                          return Image.network(
-                            imgUrl,
-                            height: 200,
-                            width: double.infinity,
-                          );
-                        }),
-                        height: 200,
-                        width: double.infinity,
-                        fit: BoxFit.fill,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       Text(
                         data[index].title,
                         style: const TextStyle(
-                          color: Color.fromARGB(255, 160, 217, 245),
-                          fontSize: 22,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            data[index].author,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            data[index].publishedAt.toString(),
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
+                      Text(
+                        data[index].author,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Text(
-                            data[index].description,
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                        ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.network(data[index].urlToImage),
                       ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(data[index].content),
                     ],
                   ),
-                );
-              }),
-              error: ((error, stackTrace) => Text(error.toString())),
-              loading: (() => const CircularProgressIndicator()));
-        },
-      ),
-      floatingActionButton: const FloatingCounter(),
-    );
+                ),
+              ),
+            );
+          },
+          orElse: () => const CircularProgressIndicator(),
+        );
   }
 }
