@@ -63,6 +63,19 @@ class Home extends StatelessWidget {
                             enlargeCenterPage: true,
                           ),
                         ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        const Text(
+                          'All News',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
                         ListView.builder(
                           itemCount: data.length,
                           physics: const ClampingScrollPhysics(),
@@ -72,6 +85,7 @@ class Home extends StatelessWidget {
                               index: index,
                               img: data[index].urlToImage,
                               title: data[index].title,
+                              content: data[index].content,
                             );
                           }),
                         ),

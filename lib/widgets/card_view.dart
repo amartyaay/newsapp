@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/screens/full_news_view.dart';
 // import 'package:newsapp/services/local_storage.dart';
 import 'package:newsapp/services/provider.dart';
 
 class CardView extends ConsumerWidget {
-  final String title, img;
+  final String title, img, content;
   final int index;
-  const CardView(
-      {super.key, required this.img, required this.title, required this.index});
+  const CardView({
+    super.key,
+    required this.img,
+    required this.title,
+    required this.index,
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,37 +27,60 @@ class CardView extends ConsumerWidget {
           MaterialPageRoute(builder: ((context) => FullView(index: index))),
         );
       },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Row(
-            children: [
-              Image(
-                image: NetworkImage(img),
-                errorBuilder: ((context, error, stackTrace) {
-                  return Image.network(
-                    imgUrl,
-                    height: 100,
-                    width: 100,
-                  );
-                }),
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(
+          bottom: 20,
+        ),
+        padding: const EdgeInsets.all(12),
+        height: 130,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(26),
+        ),
+        child: Row(
+          children: [
+            Flexible(
+              flex: 3,
+              child: Container(
                 height: 100,
-                width: 100,
-                fit: BoxFit.fitHeight,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Text(
-                  title,
-                  maxLines: 5,
-                  textAlign: TextAlign.justify,
-                  overflow: TextOverflow.ellipsis,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                    image: NetworkImage(img),
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Flexible(
+              flex: 5,
+              child: Column(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    content,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white54,
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
