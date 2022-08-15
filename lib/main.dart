@@ -6,11 +6,10 @@ import 'package:newsapp/screens/home_view.dart';
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
   runApp(
-    ProviderScope(
+    const ProviderScope(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(),
-        home: const Home(),
+        home: Home(),
       ),
     ),
   );

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:newsapp/helper/article.dart';
+import 'package:newsapp/model/article.dart';
 
 final String apiKey = dotenv.get('api_key', fallback: 'API_KEY doesnt exsists');
 
