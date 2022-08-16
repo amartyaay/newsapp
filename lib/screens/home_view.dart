@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _index = 0;
+  bool isNotificationON = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +30,26 @@ class _HomeState extends State<Home> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
+            onPressed: () {
+              if (!isNotificationON) {
                 showSnackBar(context, 'Notification ON');
-              },
-              icon: const Icon(
-                Icons.notifications_outlined,
-                color: Colors.black,
-              ))
+              } else {
+                showSnackBar(context, 'Notifications OFF');
+              }
+              setState(() {
+                isNotificationON = !isNotificationON;
+              });
+            },
+            icon: !isNotificationON
+                ? const Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.black,
+                  )
+                : const Icon(
+                    Icons.notifications_active,
+                    color: Colors.black,
+                  ),
+          ),
         ],
         backgroundColor: Colors.white,
       ),
