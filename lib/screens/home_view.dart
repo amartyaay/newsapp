@@ -5,6 +5,7 @@ import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/services/providers/provider.dart';
 import 'package:newsapp/widgets/breaking_news_card.dart';
 import 'package:newsapp/widgets/card_view.dart';
+import 'package:newsapp/widgets/snackbar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,7 +29,9 @@ class _HomeState extends State<Home> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showSnackBar(context, 'Notification ON');
+              },
               icon: const Icon(
                 Icons.notifications_outlined,
                 color: Colors.black,
