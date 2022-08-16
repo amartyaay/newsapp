@@ -6,7 +6,9 @@ import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/model/article.dart';
 import 'dart:developer' show log;
 
-final apiProvider = Provider((ref) => GetNews());
+final apiProvider = Provider(
+  (ref) => GetNews(),
+);
 
 class GetNews {
   final String apiKey = dotenv.env['new_api_key'] ?? 'inavlid';
