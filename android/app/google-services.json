@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "193945436265",
+    "project_id": "my-newsapp-flutter",
+    "storage_bucket": "my-newsapp-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193945436265:android:2f42b79c580d8a527562f8",
+        "android_client_info": {
+          "package_name": "amartyaay.com.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193945436265-4ptahtr7ql8vgu217ot2u09nm7qg6hhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkyuupScTYsYq2WMEDFdvFmATA7p2pzZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193945436265-4ptahtr7ql8vgu217ot2u09nm7qg6hhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -38,6 +38,10 @@ dependencies:
   flutter_riverpod: ^1.0.4
   shared_preferences: ^2.0.15
   carousel_slider: ^4.1.1
+  firebase_core: ^1.20.1
+  firebase_auth: ^3.6.3
+  cloud_firestore: ^3.4.4
+  google_sign_in: ^5.4.1
 
 dev_dependencies:
   flutter_test:
