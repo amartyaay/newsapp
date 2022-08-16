@@ -73,11 +73,13 @@ class CardView extends ConsumerWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  Text(
-                    content,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white54,
+                  Expanded(
+                    child: Text(
+                      content,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white54,
+                      ),
                     ),
                   )
                 ],

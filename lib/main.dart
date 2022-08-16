@@ -11,10 +11,14 @@ import 'package:newsapp/screens/login_view.dart';
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+          primaryColor: Colors.black,
+        ),
         debugShowCheckedModeBanner: false,
-        home: MyApp(),
+        home: const Home(),
       ),
     ),
   );
