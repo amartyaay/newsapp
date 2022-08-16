@@ -1,10 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/constants/constants.dart';
-import 'package:newsapp/services/providers/provider.dart';
-import 'package:newsapp/widgets/breaking_news_card.dart';
-import 'package:newsapp/widgets/card_view.dart';
+import 'package:newsapp/screens/bottom_nav_screens/bookmarks_screen.dart';
+import 'package:newsapp/screens/bottom_nav_screens/categories_Screen.dart';
+import 'package:newsapp/screens/bottom_nav_screens/home_screen.dart';
+import 'package:newsapp/screens/bottom_nav_screens/profile_screen.dart';
 import 'package:newsapp/widgets/snackbar.dart';
 
 class Home extends StatefulWidget {
@@ -17,6 +18,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _index = 0;
   bool isNotificationON = false;
+  final screens = [
+    const HomeScreen(),
+    const Categories(),
+    const Bookmarks(),
+    const Profile()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +38,8 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             onPressed: () {
+              final user = FirebaseAuth.instance.currentUser;
+              log(user.toString());
               if (!isNotificationON) {
                 showSnackBar(context, 'Notification ON');
               } else {
@@ -53,81 +62,7 @@ class _HomeState extends State<Home> {
         ],
         backgroundColor: Colors.white,
       ),
-      body: Consumer(
-        builder: ((context, ref, child) {
-          return ref.watch(newsProvider).when(
-              data: ((data) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Breaking News',
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CarouselSlider.builder(
-                          itemCount: data.length,
-                          itemBuilder: (context, index, id) => BreakingNews(
-                            img: data[index].urlToImage,
-                            title: data[index].title,
-                            index: index,
-                          ),
-                          options: CarouselOptions(
-                            aspectRatio: 16 / 9,
-                            enableInfiniteScroll: true,
-                            enlargeCenterPage: true,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        const Text(
-                          'All News',
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        ListView.builder(
-                          itemCount: data.length,
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: ((context, index) {
-                            return CardView(
-                              index: index,
-                              img: data[index].urlToImage,
-                              title: data[index].title,
-                              content: data[index].content,
-                            );
-                          }),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-              error: ((error, stackTrace) {
-                return Text(
-                  error.toString(),
-                  style: readCounterTextStyle,
-                );
-              }),
-              loading: (() =>
-                  const Center(child: CircularProgressIndicator())));
-        }),
-      ),
+      body: screens[_index],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(12),
         decoration: BoxDecoration(

@@ -1,14 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/firebase_options.dart';
-import 'package:newsapp/screens/home_view.dart';
+import 'package:newsapp/screens/error_view.dart';
 import 'package:newsapp/screens/loading_page.dart';
-import 'package:newsapp/screens/login_view.dart';
+import 'package:newsapp/services/auth/auth_checker.dart';
+import 'package:newsapp/services/auth/auth_providers.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   runApp(
     ProviderScope(
@@ -18,33 +17,23 @@ Future<void> main() async {
           primaryColor: Colors.black,
         ),
         debugShowCheckedModeBanner: false,
-        home: const Home(),
+        home: const MyApp(),
       ),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
-        builder: ((context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              final user = FirebaseAuth.instance.currentUser;
-              if (user == null) {
-                return const LoginPage();
-              } else {
-                return const Home();
-              }
-            default:
-              return const LoadingPage();
-          }
-        }));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final intializeApp = ref.watch(firebaseinitializerProvider);
+    return intializeApp.when(
+        data: (data) => const AuthChecker(),
+        error: ((error, stackTrace) => ErrorPage(
+              e: error.toString(),
+            )),
+        loading: (() => const LoadingPage()));
   }
 }
