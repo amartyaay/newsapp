@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/services/provider.dart';
+import 'package:newsapp/services/riverpod/provider.dart';
 
 class FullView extends ConsumerWidget {
   final int index;
@@ -43,9 +43,12 @@ class FullView extends ConsumerWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(data[index].urlToImage),
+                      Hero(
+                        tag: data[index].title,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.network(data[index].urlToImage),
+                        ),
                       ),
                       const SizedBox(
                         height: 30,

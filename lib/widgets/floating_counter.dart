@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
-import 'package:newsapp/services/provider.dart';
+import 'package:newsapp/services/riverpod/provider.dart';
 
 class FloatingCounter extends StatelessWidget {
   const FloatingCounter({super.key});

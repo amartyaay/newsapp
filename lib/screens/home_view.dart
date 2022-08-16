@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
-import 'package:newsapp/services/provider.dart';
+import 'package:newsapp/services/riverpod/provider.dart';
 import 'package:newsapp/widgets/breaking_news_card.dart';
 import 'package:newsapp/widgets/card_view.dart';
 
@@ -62,6 +62,7 @@ class _HomeState extends State<Home> {
                           itemBuilder: (context, index, id) => BreakingNews(
                             img: data[index].urlToImage,
                             title: data[index].title,
+                            index: index,
                           ),
                           options: CarouselOptions(
                             aspectRatio: 16 / 9,

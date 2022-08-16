@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/screens/full_news_view.dart';
 // import 'package:newsapp/services/local_storage.dart';
-import 'package:newsapp/services/provider.dart';
+import 'package:newsapp/services/riverpod/provider.dart';
 
 class CardView extends ConsumerWidget {
   final String title, img, content;
@@ -42,13 +42,16 @@ class CardView extends ConsumerWidget {
           children: [
             Flexible(
               flex: 3,
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  image: DecorationImage(
-                    image: NetworkImage(img),
-                    fit: BoxFit.fitHeight,
+              child: Hero(
+                tag: title,
+                child: Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    image: DecorationImage(
+                      image: NetworkImage(img),
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               ),
