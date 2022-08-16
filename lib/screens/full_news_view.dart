@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/services/riverpod/provider.dart';
+import 'package:newsapp/services/providers/provider.dart';
 
 class FullView extends ConsumerWidget {
   final int index;

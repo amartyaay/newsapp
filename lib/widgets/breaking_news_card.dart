@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/screens/full_news_view.dart';
-import 'package:newsapp/services/riverpod/provider.dart';
+import 'package:newsapp/services/providers/provider.dart';
 
 class BreakingNews extends ConsumerWidget {
   final String img, title;
