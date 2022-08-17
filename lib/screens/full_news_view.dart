@@ -28,6 +28,13 @@ class FullView extends ConsumerWidget {
             final user = ref.read(authProvider).getCurrentUser();
             return Scaffold(
               appBar: AppBar(
+                title: const Text(
+                  'Save Article',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                  ),
+                ),
                 backgroundColor: Colors.white,
                 iconTheme: const IconThemeData(
                   color: Colors.orange,
