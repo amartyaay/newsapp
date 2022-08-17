@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/screens/bottom_nav_screens/bookmarks_screen.dart';
-import 'package:newsapp/screens/bottom_nav_screens/categories_Screen.dart';
 import 'package:newsapp/screens/bottom_nav_screens/home_screen.dart';
 import 'package:newsapp/screens/bottom_nav_screens/profile_screen.dart';
 import 'package:newsapp/widgets/snackbar.dart';
@@ -17,9 +16,8 @@ class _HomeState extends State<Home> {
   bool isNotificationON = false;
   final screens = [
     const HomeScreen(),
-    const Categories(),
     const Bookmarks(),
-    const Profile()
+    const Profile(),
   ];
 
   @override
@@ -73,11 +71,6 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.transparent,
               icon: Icon(Icons.home),
               label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: Colors.transparent,
-              icon: Icon(Icons.list),
-              label: 'Categories',
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.bookmark),
