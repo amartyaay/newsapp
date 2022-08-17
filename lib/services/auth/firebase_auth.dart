@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsapp/firebase_options.dart';
 import 'package:newsapp/widgets/snackbar.dart';
@@ -28,21 +29,31 @@ class FirebaseMethods {
   }
 
   Future<void> googleSignIn(BuildContext context) async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    //auth details from Sign In request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
-
-    //create credentials
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    //try firebase login
     try {
-      await _auth.signInWithCredential(credential);
+      if (kIsWeb) {
+        GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+        googleProvider
+            .addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+        await _auth.signInWithPopup(googleProvider);
+      } else {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+        //auth details from Sign In request
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser!.authentication;
+
+        //create credentials
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        //try firebase login
+
+        await _auth.signInWithCredential(credential);
+      }
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }

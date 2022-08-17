@@ -18,7 +18,20 @@ class LoginPage extends ConsumerWidget {
                       return;
                     }));
           },
-          child: const Text('Login With Google'),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: const Text('Login With Google'),
+          ),
         ),
       ),
     );
