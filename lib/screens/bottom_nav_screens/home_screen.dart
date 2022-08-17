@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
+import 'package:newsapp/services/firestore/firestore_providers.dart';
 import 'package:newsapp/services/providers/provider.dart';
 import 'package:newsapp/widgets/breaking_news_card.dart';
 import 'package:newsapp/widgets/card_view.dart';
@@ -13,6 +14,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Consumer(
       builder: ((context, ref, child) {
+        ref.refresh(saveListProvider);
         return ref.watch(newsProvider).when(
             data: ((data) {
               return SingleChildScrollView(
