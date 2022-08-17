@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/screens/full_news_view.dart';
 // import 'package:newsapp/services/local_storage.dart';
 import 'package:newsapp/services/providers/provider.dart';
+import 'package:newsapp/widgets/snackbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardView extends ConsumerWidget {
-  final String title, img, content;
+  final String title, img, content, articleUrl;
   final int index;
   final bool isFromSaved;
   const CardView({
@@ -15,23 +17,31 @@ class CardView extends ConsumerWidget {
     required this.index,
     required this.content,
     required this.isFromSaved,
+    required this.articleUrl,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final count = ref.watch(localStorageProvider);
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         ref.read(counterController.notifier).increase();
         ref.read(counterController.notifier).save();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
+        if (!isFromSaved) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
               builder: ((context) => FullView(
                     index: index,
-                    isFromSaved: isFromSaved,
-                  ))),
-        );
+                  )),
+            ),
+          );
+        } else {
+          final url = Uri.parse(articleUrl);
+          if (!await launchUrl(url)) {
+            showSnackBar(context, 'Could not launch $url');
+          }
+        }
       },
       child: Container(
         width: double.infinity,
@@ -69,20 +79,24 @@ class CardView extends ConsumerWidget {
               flex: 5,
               child: Column(
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    flex: 5,
+                    child: Text(
+                      title,
+                      softWrap: true,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  Expanded(
+                  Flexible(
                     child: Text(
                       content,
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.clip,
                       style: const TextStyle(
                         color: Colors.white54,
                       ),

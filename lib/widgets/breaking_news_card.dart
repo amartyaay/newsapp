@@ -21,7 +21,6 @@ class BreakingNews extends ConsumerWidget {
           MaterialPageRoute(
               builder: ((context) => FullView(
                     index: index,
-                    isFromSaved: false,
                   ))),
         );
       },

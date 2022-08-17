@@ -36,9 +36,10 @@ class Bookmarks extends ConsumerWidget {
                         return CardView(
                           isFromSaved: true,
                           index: index,
-                          img: data[index].urlToImage,
-                          title: data[index].title,
-                          content: data[index].content,
+                          title: data[index]['title'],
+                          content: data[index]['des'],
+                          img: data[index]['urlToImage'],
+                          articleUrl: data[index]['link'],
                         );
                       }),
                     ),

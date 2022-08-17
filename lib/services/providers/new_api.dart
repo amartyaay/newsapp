@@ -19,11 +19,9 @@ class GetNews {
   }
   Future<void> checkApi() async {
     await Future.delayed(const Duration(seconds: 1));
-    log(apiURL);
   }
 
   Future<List<Article>> apiCall() async {
-    log(apiURL);
     List<Article> newsCollection = [];
     final res = await http.get(Uri.parse(apiURL));
     final jsonData = jsonDecode(res.body);
@@ -48,7 +46,6 @@ class GetNews {
             articleUrl: e["link"] ?? articleURL,
           );
           newsCollection.add(article);
-          log('article added');
         },
       );
     } else {

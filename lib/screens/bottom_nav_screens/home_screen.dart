@@ -69,6 +69,7 @@ class HomeScreen extends ConsumerWidget {
                             img: data[index].urlToImage,
                             title: data[index].title,
                             content: data[index].content,
+                            articleUrl: data[index].articleUrl,
                           );
                         }),
                       ),

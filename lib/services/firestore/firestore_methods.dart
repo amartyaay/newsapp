@@ -11,16 +11,18 @@ class FirestoreMethods {
   final _fireStore = FirebaseFirestore.instance;
   Future addFav(
     String title,
-    String urlToImg,
-    String content,
     String author,
+    String content,
+    String urlToImg,
+    String url,
   ) async {
     final doc = _fireStore.collection(email).doc(title + author);
-    doc.set({
+    await doc.set({
       'title': title,
       'author': author,
       'des': content,
       'urlToImage': urlToImg,
+      'link': url,
     });
   }
 

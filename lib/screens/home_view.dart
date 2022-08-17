@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/screens/bottom_nav_screens/bookmarks_screen.dart';
 import 'package:newsapp/screens/bottom_nav_screens/categories_Screen.dart';
@@ -38,8 +35,6 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             onPressed: () {
-              final user = FirebaseAuth.instance.currentUser;
-              log(user.toString());
               if (!isNotificationON) {
                 showSnackBar(context, 'Notification ON');
               } else {
