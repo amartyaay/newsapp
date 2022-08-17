@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/constants/constants.dart';
 import 'package:newsapp/services/auth/auth_providers.dart';
 import 'package:newsapp/services/firestore/firestore_methods.dart';
+import 'package:newsapp/services/firestore/firestore_providers.dart';
 import 'package:newsapp/services/providers/provider.dart';
 import 'package:newsapp/widgets/snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,12 +35,7 @@ class FullView extends ConsumerWidget {
                 actions: [
                   IconButton(
                     onPressed: () async {
-                      final bool isAlreadySaved =
-                          await FirestoreMethods().checkIfAlreadyPresent(
-                        data[index].title,
-                        data[index].author,
-                      );
-                      if (!isSaved && !isAlreadySaved) {
+                      if (!isSaved) {
                         String email = user?.email ?? '';
                         if (email != '') {
                           try {
@@ -52,6 +48,7 @@ class FullView extends ConsumerWidget {
                             );
                             showSnackBar(context, 'Saved');
                             isSaved = true;
+                            ref.refresh(saveListProvider);
                           } catch (e) {
                             log(e.toString());
                             showSnackBar(context, e.toString());

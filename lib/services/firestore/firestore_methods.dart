@@ -31,9 +31,4 @@ class FirestoreMethods {
     final newsData = querySnapshot.docs.map((doc) => doc.data()).toList();
     return newsData;
   }
-
-  Future<bool> checkIfAlreadyPresent(String title, String author) async {
-    final doc = await _fireStore.collection(email).doc(title + author).get();
-    return doc.exists ? false : true;
-  }
 }
