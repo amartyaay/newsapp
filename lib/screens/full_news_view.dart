@@ -7,6 +7,7 @@ import 'package:newsapp/services/auth/auth_providers.dart';
 import 'package:newsapp/services/firestore/firestore_methods.dart';
 import 'package:newsapp/services/providers/provider.dart';
 import 'package:newsapp/widgets/snackbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FullView extends ConsumerWidget {
   final int index;
@@ -33,7 +34,12 @@ class FullView extends ConsumerWidget {
                 actions: [
                   IconButton(
                     onPressed: () async {
-                      if (!isSaved) {
+                      final bool isAlreadySaved =
+                          await FirestoreMethods().checkIfAlreadyPresent(
+                        data[index].title,
+                        data[index].author,
+                      );
+                      if (!isSaved && !isAlreadySaved) {
                         String email = user?.email ?? '';
                         if (email != '') {
                           try {
@@ -51,8 +57,10 @@ class FullView extends ConsumerWidget {
                             showSnackBar(context, e.toString());
                           }
                         } else {
-                          showSnackBar(context, 'Already Saved Article');
+                          showSnackBar(context, 'Login to Save');
                         }
+                      } else {
+                        showSnackBar(context, 'Already Saved');
                       }
                     },
                     icon: const Icon(Icons.add),
@@ -100,6 +108,25 @@ class FullView extends ConsumerWidget {
                         height: 30,
                       ),
                       Text(data[index].content),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          final url = Uri.parse(data[index].articleUrl);
+                          if (!await launchUrl(url)) {
+                            showSnackBar(context, 'Could not launch $url');
+                          }
+                        },
+                        child: const Text(
+                          'Go to Article',
+                          style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 8,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
