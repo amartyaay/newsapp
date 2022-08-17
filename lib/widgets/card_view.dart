@@ -7,12 +7,14 @@ import 'package:newsapp/services/providers/provider.dart';
 class CardView extends ConsumerWidget {
   final String title, img, content;
   final int index;
+  final bool isFromSaved;
   const CardView({
     super.key,
     required this.img,
     required this.title,
     required this.index,
     required this.content,
+    required this.isFromSaved,
   });
 
   @override
@@ -24,7 +26,11 @@ class CardView extends ConsumerWidget {
         ref.read(counterController.notifier).save();
         Navigator.push(
           context,
-          MaterialPageRoute(builder: ((context) => FullView(index: index))),
+          MaterialPageRoute(
+              builder: ((context) => FullView(
+                    index: index,
+                    isFromSaved: isFromSaved,
+                  ))),
         );
       },
       child: Container(

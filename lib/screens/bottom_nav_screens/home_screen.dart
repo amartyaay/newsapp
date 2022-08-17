@@ -64,6 +64,7 @@ class HomeScreen extends ConsumerWidget {
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
                           return CardView(
+                            isFromSaved: false,
                             index: index,
                             img: data[index].urlToImage,
                             title: data[index].title,
