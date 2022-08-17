@@ -18,7 +18,11 @@ class BreakingNews extends ConsumerWidget {
         ref.read(counterController.notifier).save();
         Navigator.push(
           context,
-          MaterialPageRoute(builder: ((context) => FullView(index: index))),
+          MaterialPageRoute(
+              builder: ((context) => FullView(
+                    index: index,
+                    isFromSaved: false,
+                  ))),
         );
       },
       child: Container(
