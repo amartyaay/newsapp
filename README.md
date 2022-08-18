@@ -1,9 +1,9 @@
 # newsapp
 
 A new Flutter project.
-<p float="left">
-<img src="https://github.com/amartyaay/newsapp/blob/master/pics/Screenshot_2022-07-25-12-35-17-016_amartyaay.com.newsapp.jpg" height="500">
-<img src="https://github.com/amartyaay/newsapp/blob/master/pics/Screenshot_2022-07-25-12-35-24-276_amartyaay.com.newsapp.jpg" height=500">
+
+<p float="center">
+<img src=./pics/newsapp recording_Trim.gif>
 </p>
 ## Getting Started
 
