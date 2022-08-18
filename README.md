@@ -2,8 +2,9 @@
 
 A new Flutter project.
 
-<p float="center">
-<img src=./pics/newsapp recording_Trim.gif>
+<p float="left">
+<img src="https://github.com/amartyaay/newsapp/blob/master/pics/newsapp%20recording_Trim.gif" height="500">
+
 </p>
 ## Getting Started
 
