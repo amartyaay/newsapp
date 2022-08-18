@@ -1,4 +1,4 @@
-#A news app made with Flutter.
+<h2><b>A news app made with Flutter.</b></h2>
 
 Demo GIF
 
