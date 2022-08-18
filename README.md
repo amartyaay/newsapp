@@ -3,7 +3,7 @@
 A new Flutter project.
 
 <p float="left">
-<img src="https://github.com/amartyaay/newsapp/blob/master/pics/demo.gif" height="500">
+<img src="https://github.com/amartyaay/newsapp/blob/master/pics/demo.gif">
 
 </p>
 ## Getting Started
